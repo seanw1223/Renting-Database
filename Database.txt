@@ -1,0 +1,229 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: May 12, 2024 at 04:29 AM
+-- Server version: 10.3.31-MariaDB-0+deb10u1
+-- PHP Version: 7.3.31-1~deb10u1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `cs230_u230682`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contracts`
+--
+
+CREATE TABLE `contracts` (
+  `id` int(11) NOT NULL,
+  `contract_date` date NOT NULL,
+  `property_address` varchar(255) NOT NULL,
+  `landlord_id` int(11) DEFAULT NULL,
+  `fee_monthly` decimal(10,2) NOT NULL,
+  `property_door_number` varchar(20) NOT NULL,
+  `contract_length` enum('Month','Year','Permanent') NOT NULL,
+  `property_type` enum('Apartment','Semi-Detached','Detached','Other') DEFAULT NULL,
+  `property_type_other` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contracts`
+--
+
+INSERT INTO `contracts` (`id`, `contract_date`, `property_address`, `landlord_id`, `fee_monthly`, `property_door_number`, `contract_length`, `property_type`, `property_type_other`) VALUES
+(1, '2024-01-01', 'Awspartments', 1, '1500.00', '128', 'Year', 'Apartment', NULL),
+(183, '2024-01-01', '123 Walker street', 1, '1500.00', '1', 'Year', 'Apartment', NULL),
+(184, '2024-02-15', '123 Mob St', 2, '1800.00', '1', 'Year', 'Apartment', NULL),
+(185, '2024-03-10', '12 dead St', 3, '1600.00', '1', 'Year', 'Semi-Detached', NULL),
+(186, '2024-04-05', '44 Nightshade Lane', 4, '1700.00', '44', 'Year', 'Detached', NULL),
+(187, '2024-05-20', '88 Sunset Boulevard', 5, '2000.00', '88', 'Year', 'Detached', NULL),
+(188, '2024-06-14', '21 Beacon Hill', 6, '1900.00', '21', 'Year', 'Detached', NULL),
+(189, '2024-07-02', 'Winterfell Castle', 7, '1750.00', 'Winterfell', 'Year', 'Apartment', NULL),
+(190, '2024-08-11', 'Dragonstone', 8, '1550.00', 'Dragonstone', 'Year', 'Apartment', NULL),
+(191, '2024-09-19', 'Wine Cellar, Tower of the Hand', 9, '1650.00', 'Tower of the Hand', 'Year', 'Apartment', NULL),
+(192, '2024-10-25', 'Winterfell Castle', 10, '1850.00', 'Winterfell', 'Year', 'Detached', NULL),
+(193, '2024-11-30', 'Winterfell Castle', 1, '1750.00', 'Winterfell', 'Year', 'Detached', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract_tenants`
+--
+
+CREATE TABLE `contract_tenants` (
+  `contract_id` int(11) NOT NULL,
+  `tenant_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contract_tenants`
+--
+
+INSERT INTO `contract_tenants` (`contract_id`, `tenant_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `landlords`
+--
+
+CREATE TABLE `landlords` (
+  `id` int(11) NOT NULL,
+  `title` enum('Mx','Ms','Mr','Mrs','Miss','Dr','Other') DEFAULT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `email_address` varchar(100) NOT NULL,
+  `address_line1` varchar(255) NOT NULL,
+  `address_line2` varchar(255) DEFAULT NULL,
+  `town` varchar(100) NOT NULL,
+  `county_city` varchar(100) NOT NULL,
+  `eircode` varchar(10) DEFAULT NULL,
+  `date_of_birth` date NOT NULL,
+  `permission_to_rent` tinyint(1) NOT NULL,
+  `permission_to_email` tinyint(1) NOT NULL,
+  `title_other` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `landlords`
+--
+
+INSERT INTO `landlords` (`id`, `title`, `first_name`, `surname`, `phone_number`, `email_address`, `address_line1`, `address_line2`, `town`, `county_city`, `eircode`, `date_of_birth`, `permission_to_rent`, `permission_to_email`, `title_other`) VALUES
+(1, 'Mr', 'Rick', 'Grimes', '123-456-7890', 'Rick.grimes@grimsy.com', '123 Walker street', 'NULL', 'Atlanta', 'Georgia', 'ATL 4575', '1965-05-16', 1, 1, NULL),
+(2, 'Mr', 'Anthony', 'Soprano', '666-666-4656', 'tony.soprano@gmail.com', '123 Mob St', 'NULL', 'New Jersey', 'USA', 't66 55h7', '1955-04-30', 1, 1, NULL),
+(3, 'Mr', 'Negan', 'Smith', '666-643-4465', 'negan.smith@gmail.com', '12 dead St', 'NULL', 'Virginia', 'USA', 'V56 65hs7', '1976-08-30', 1, 1, NULL),
+(4, 'Mr', 'Jaxon', 'McIntyre', '555-321-9876', 'jaxon.the.lord@example.com', '44 Nightshade Lane', NULL, 'New Orleans', 'Louisiana', '70112', '1978-10-25', 1, 1, NULL),
+(5, 'Ms', 'Vivienne', 'Carmichael', '333-777-5555', 'vivienne@carmichaelproperties.com', '88 Sunset Boulevard', NULL, 'San Francisco', 'California', '94102', '1983-06-14', 1, 1, NULL),
+(6, 'Dr', 'Xavier', 'Montgomery', '111-222-3333', 'xavier.monty@realtygenius.com', '21 Beacon Hill', NULL, 'New York City', 'New York', '10001', '1975-03-08', 1, 1, NULL),
+(7, 'Mr', 'Eddard', 'Stark', '555-444-3333', 'ned.stark@winterfell.com', 'Winterfell Castle', NULL, 'Winterfell', 'The North', 'WF1 1AA', '1960-12-03', 1, 1, NULL),
+(8, 'Ms', 'Daenerys', 'Targaryen', '666-777-8888', 'dany.dragonqueen@gmail.com', 'Dragonstone', NULL, 'Dragonstone', 'Crownlands', 'DS55 1234', '1986-07-25', 1, 1, NULL),
+(9, 'Mr', 'Tyrion', 'Lannister', '555-666-7777', 'tyrion.lannister@gmail.com', 'Wine Cellar', 'Tower of the Hand', 'King\'s Landing', 'Crownlands', 'KL33 5577', '1978-03-11', 1, 1, NULL),
+(10, 'Ms', 'Sansa', 'Stark', '777-888-9999', 'sansa.stark@winterfell.com', 'Winterfell Castle', NULL, 'Winterfell', 'The North', 'WF1 1AA', '1992-06-15', 1, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tenants`
+--
+
+CREATE TABLE `tenants` (
+  `id` int(11) NOT NULL,
+  `title` enum('Mx','Ms','Mr','Mrs','Miss','Dr','Other') DEFAULT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `email_address` varchar(100) NOT NULL,
+  `address_line1` varchar(255) NOT NULL,
+  `address_line2` varchar(255) DEFAULT NULL,
+  `town` varchar(100) NOT NULL,
+  `county_city` varchar(100) NOT NULL,
+  `eircode` varchar(10) DEFAULT NULL,
+  `title_other` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tenants`
+--
+
+INSERT INTO `tenants` (`id`, `title`, `first_name`, `surname`, `phone_number`, `email_address`, `address_line1`, `address_line2`, `town`, `county_city`, `eircode`, `title_other`) VALUES
+(1, 'Ms', 'Cersei', 'Lannister', '765-874-6688', 'cersei.lannister@gmail.com', '112 Red Keep', 'NULL', 'Crownlands', 'Westeros', 'KL33 5577', NULL),
+(2, 'Mr', 'Thomas', 'Shelby', '655-777-5555', 'tommy.shelby@gmail.com', '556 Peaky Street', 'NULL', 'Birmingham', 'England', 'B21 5577', NULL),
+(3, 'Mr', 'Barney', 'Stinson', '123-456-7893', 'Barney.stinson@gmail.com', 'Awspartments', 'Apt 21', 'Manhattan', 'New York', 'NY66 8865', NULL),
+(4, 'Mr', 'Liam', 'O\'Malley', '555-777-9999', 'liam.omalley@irishcharm.com', '17 Shamrock Lane', NULL, 'Galway', 'Galway', 'H91 C9X3', NULL),
+(5, 'Ms', 'Sofia', 'Lopez', '222-333-4444', 'sofia.lopez@tango.com', '33 Salsa Street', 'Apt 5B', 'Barcelona', 'Catalonia', '08001', NULL),
+(6, 'Mr', 'Dante', 'Moretti', '999-888-7777', 'dante.moretti@venicevibes.it', '12 Gondola Way', 'Unit 3', 'Venice', 'Veneto', '30100', NULL),
+(7, 'Ms', 'Luna', 'Ramirez', '777-666-5555', 'luna.ramirez@moonmail.com', '5 Celestial Avenue', NULL, 'Los Angeles', 'California', '90001', NULL),
+(8, 'Mr', 'Hiro', 'Tanaka', '444-555-6666', 'hiro.tanaka@tokyodreams.jp', '8 Sakura Street', NULL, 'Tokyo', 'Tokyo', '100-0001', NULL),
+(9, 'Ms', 'Zara', 'Abdullah', '666-555-4444', 'zara.abdullah@desertdreams.sa', '22 Oasis Road', NULL, 'Riyadh', 'Riyadh', '11564', NULL),
+(10, 'Mr', 'Luca', 'Conti', '111-222-3333', 'luca.conti@italiancharm.it', '14 Via Roma', NULL, 'Rome', 'Lazio', '00184', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `contracts`
+--
+ALTER TABLE `contracts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `landlord_id` (`landlord_id`);
+
+--
+-- Indexes for table `contract_tenants`
+--
+ALTER TABLE `contract_tenants`
+  ADD PRIMARY KEY (`contract_id`,`tenant_id`),
+  ADD KEY `tenant_id` (`tenant_id`);
+
+--
+-- Indexes for table `landlords`
+--
+ALTER TABLE `landlords`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tenants`
+--
+ALTER TABLE `tenants`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `contracts`
+--
+ALTER TABLE `contracts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+
+--
+-- AUTO_INCREMENT for table `landlords`
+--
+ALTER TABLE `landlords`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tenants`
+--
+ALTER TABLE `tenants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `contracts`
+--
+ALTER TABLE `contracts`
+  ADD CONSTRAINT `contracts_ibfk_1` FOREIGN KEY (`landlord_id`) REFERENCES `landlords` (`id`);
+
+--
+-- Constraints for table `contract_tenants`
+--
+ALTER TABLE `contract_tenants`
+  ADD CONSTRAINT `contract_tenants_ibfk_1` FOREIGN KEY (`contract_id`) REFERENCES `contracts` (`id`),
+  ADD CONSTRAINT `contract_tenants_ibfk_2` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

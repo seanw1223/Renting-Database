@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+      <header>
+        <h1>Property Management System</h1>
+    </header>
+    
+    <!-- Landlord Section -->
+    <section>
+        <h2>Landlord Management</h2>
+        <form id="landlordForm">
+            <input type="hidden" id="landlordId">
+            <input type="text" id="landlordFirstName" placeholder="First Name">
+            <input type="text" id="landlordLastName" placeholder="Last Name">
+            <input type="email" id="landlordEmail" placeholder="Email">
+            <input type="text" id="landlordPhoneNumber" placeholder="Phone Number">
+            <input type="text" id="landlordAddressLine1" placeholder="Address Line 1">
+            <input type="text" id="landlordAddressLine2" placeholder="Address Line 2">
+            <input type="text" id="landlordCity" placeholder="City">
+            <input type="text" id="landlordState" placeholder="State">
+            <input type="text" id="landlordZip" placeholder="Zip Code">
+            <button type="submit">Save Landlord</button>
+        </form>
+        <button onclick="fetchLandlords()">Retrieve Landlords</button>
+        <table id="landlordTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>LandlordID</th>
+                    <th>Title</th>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>House Number</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+                </thead>
+            <tbody></tbody>
+          </table>
+      </section>
+    
+    <!-- Tenant Section -->
+    <section>
+        <h2>Tenant Management</h2>
+        <form id="tenantForm">
+            <input type="hidden" id="tenantId">
+            <input type="text" id="tenantFirstName" placeholder="First Name">
+            <input type="text" id="tenantLastName" placeholder="Last Name">
+            <input type="email" id="tenantEmail" placeholder="Email">
+            <input type="text" id="tenantPhoneNumber" placeholder="Phone Number">
+            <input type="text" id="tenantAddressLine1" placeholder="Address Line 1">
+            <input type="text" id="tenantAddressLine2" placeholder="Address Line 2">
+            <input type="text" id="tenantCity" placeholder="City">
+            <input type="text" id="tenantState" placeholder="State">
+            <input type="text" id="tenantZip" placeholder="Zip Code">
+            <button type="submit">Save Tenant</button>
+        </form>
+        <button onclick="fetchTenants()">Retrieve Tenants</button>
+        <table id="tenantTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>LandlordID</th>
+                    <th>Title</th>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>House Number</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+           </table>
+    </section>
+    
+    <!-- Contract Section -->
+    <section>
+        <h2>Contract Management</h2>
+        <form id="contractForm">
+            <input type="hidden" id="contractId">
+            <input type="date" id="contractDate" placeholder="Contract Date">
+            <input type="text" id="contractAddress" placeholder="Property Address">
+            <input type="number" id="contractFee" placeholder="Monthly Fee">
+            <input type="text" id="contractType" placeholder="Property Type">
+            <input type="text" id="contractLandlord" placeholder="Landlord">
+            <input type="text" id="contractTenant" placeholder="Tenant">
+            <button type="submit">Save Contract</button>
+        </form>
+        <button onclick="fetchContracts()">Retrieve Contracts</button>
+        <table id="contractTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Contract ID</th>
+                    <th>Issue Date</th>
+                    <th>Address</th>
+                    <th>Landlord ID</th>
+                    <th>Rent</th>
+                    <th>Tenant</th>
+                    <th>Term</th>
+                </tr>
+            </thead>
+             <tbody></tbody>
+        </table>
+     </section>
+</body>
+</html>
