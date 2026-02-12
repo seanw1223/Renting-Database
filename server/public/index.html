@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Property Management System</h1>
+    </header>
+
+    <!-- ========================= -->
+    <!-- LANDLORD SECTION -->
+    <!-- ========================= -->
+    <section>
+        <h2>Landlord Management</h2>
+
+        <form id="landlordForm">
+            <input type="hidden" id="landlordId">
+
+            <input type="text" id="title" placeholder="Title">
+            <input type="text" id="first_name" placeholder="First Name">
+            <input type="text" id="surname" placeholder="Surname">
+            <input type="email" id="email_address" placeholder="Email">
+            <input type="text" id="phone_number" placeholder="Phone Number">
+
+            <input type="text" id="address_line1" placeholder="Address Line 1">
+            <input type="text" id="address_line2" placeholder="Address Line 2">
+            <input type="text" id="town" placeholder="Town">
+            <input type="text" id="county_city" placeholder="County / City">
+            <input type="text" id="eircode" placeholder="Eircode">
+
+            <input type="date" id="date_of_birth">
+
+            <label><input type="checkbox" id="permission_to_rent"> Permission to Rent</label>
+            <label><input type="checkbox" id="permission_to_email"> Permission to Email</label>
+
+            <input type="text" id="title_other" placeholder="Other Title">
+
+            <button type="submit">Save Landlord</button>
+        </form>
+
+        <button onclick="fetchLandlords()">Retrieve Landlords</button>
+
+        <table id="landlordTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address Line 1</th>
+                    <th>Address Line 2</th>
+                    <th>Town</th>
+                    <th>County/City</th>
+                    <th>Eircode</th>
+                    <th>Date of Birth</th>
+                    <th>Rent Permission</th>
+                    <th>Email Permission</th>
+                    <th>Other Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="closeLandlordTable" style="display:none;" onclick="closeLandlordTable()">Close</button>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- TENANT SECTION -->
+    <!-- ========================= -->
+    <section>
+        <h2>Tenant Management</h2>
+
+        <form id="tenantForm">
+            <input type="hidden" id="tenantId">
+
+            <input type="text" id="tenantFirstName" placeholder="First Name">
+            <input type="text" id="tenantLastName" placeholder="Surname">
+            <input type="email" id="tenantEmail" placeholder="Email">
+            <input type="text" id="tenantPhoneNumber" placeholder="Phone Number">
+
+            <input type="text" id="tenantAddressLine1" placeholder="Address Line 1">
+            <input type="text" id="tenantAddressLine2" placeholder="Address Line 2">
+            <input type="text" id="tenantCity" placeholder="Town">
+            <input type="text" id="tenantState" placeholder="County / City">
+            <input type="text" id="tenantZip" placeholder="Eircode">
+
+            <button type="submit">Save Tenant</button>
+        </form>
+
+        <button onclick="fetchTenants()">Retrieve Tenants</button>
+
+        <table id="tenantTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address Line 1</th>
+                    <th>Address Line 2</th>
+                    <th>Town</th>
+                    <th>County/City</th>
+                    <th>Eircode</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="closeTenantTable" style="display:none;" onclick="closeTenantTable()">Close</button>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- CONTRACT SECTION -->
+    <!-- ========================= -->
+    <section>
+        <h2>Contract Management</h2>
+
+        <form id="contractForm">
+            <input type="hidden" id="contractId">
+
+            <input type="date" id="contractDate">
+            <input type="text" id="contractAddress" placeholder="Property Address">
+            <input type="number" id="contractFee" placeholder="Monthly Fee">
+            <input type="text" id="contractType" placeholder="Property Type">
+
+            <input type="number" id="contractLandlord" placeholder="Landlord ID">
+            
+
+            <button type="submit">Save Contract</button>
+        </form>
+
+        <button onclick="fetchContracts()">Retrieve Contracts</button>
+
+        <table id="contractTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Contract Date</th>
+                    <th>Property Address</th>
+                    <th>Monthly Fee</th>
+                    <th>Property Type</th>
+                    <th>Landlord ID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="tenantManager" style="display:none; margin-top:20px; border:1px solid #ccc; padding:10px;">
+            <h3>Manage Tenants for Contract <span id="tenantManagerContractId"></span></h3>
+        
+            <div id="tenantList"></div>
+        
+            <input type="number" id="newTenantId" placeholder="Tenant ID to add">
+            <button onclick="addTenantToContract()">Add Tenant</button>
+        
+            <button onclick="closeTenantManager()">Close</button>
+        </div>
+        
+        <button id="closeContractTable" style="display:none;" onclick="closeContractTable()">Close</button>
+
+    </section>
+
+</body>
+</html>
