@@ -5,6 +5,22 @@ It supports full CRUD operations for landlords, tenants, and contracts — plus 
 
 ---
 
+## 📸 Application Screenshots
+Below are screenshots demonstrating the core CRUD functionality and the contract–tenant linking interface.
+
+<h3>Landlords Management</h3>
+<img src="screenshots/LandlordManage.png" width="700" />
+
+<h3>Tenants Management</h3>
+<img src="screenshots/TenantManage.png" width="700" />
+
+<h3>Contract–Tenant Linking</h3>
+<img src="screenshots/ContractManage.png" width="700" />
+
+---
+
+
+
 ## Features
 
 ### Landlords
